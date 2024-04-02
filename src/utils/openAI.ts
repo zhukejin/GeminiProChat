@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from '@fuyun/generative-ai'
+import type { ChatMessage } from '@/types'
 
 const apiKey = (import.meta.env.GEMINI_API_KEY)
 const apiBaseUrl = (import.meta.env.API_BASE_URL)?.trim().replace(/\/$/, '')
@@ -19,11 +20,11 @@ export const startChatAndSendMessageStream = async(history: ChatMessage[], newMe
       maxOutputTokens: 8000,
     },
     safetySettings: [
-      {category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_NONE'},
-      {category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_NONE'},
-      {category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_NONE'},
-      {category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_NONE'}
-      ],
+      { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_NONE' },
+      { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_NONE' },
+      { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_NONE' },
+      { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_NONE' },
+    ],
   })
 
   // Use sendMessageStream for streaming responses
